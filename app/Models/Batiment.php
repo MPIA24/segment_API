@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Batiment extends Model
 {
@@ -19,6 +20,12 @@ class Batiment extends Model
         'longitude',
     ];
 
-    public $incrementing = false; // L'ID n'est pas un entier auto-incrémenté
-    protected $keyType = 'string'; // L'ID est une chaîne
+    public function VisitedBatiments() : HasMany
+    {
+        return $this->hasMany(VisitedBatiments::class);
+    }
+
+
+    public $incrementing = false;
+    protected $keyType = 'string';
 }
