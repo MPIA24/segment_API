@@ -19,6 +19,7 @@ Cette API permet de gérer des bâtiments via diverses routes pour l'inscription
     "password": "password123",
     "password_confirmation": "password123"
 }
+```
 
 ### Exemple de réponse (Body) :
 ```json
@@ -33,6 +34,7 @@ Cette API permet de gérer des bâtiments via diverses routes pour l'inscription
         "updated_at": "2024-11-23T12:00:00.000000Z"
     }
 }
+```
 ## 2. Inscription d’un Utilisateur
 
 - **URL** : `http://localhost:8000/api/login`
@@ -45,6 +47,7 @@ Cette API permet de gérer des bâtiments via diverses routes pour l'inscription
     "email": "john.doe@example.com",
     "password": "password123"
 }
+```
 
 
 ### Exemple de réponse (Body) :
@@ -53,7 +56,7 @@ Cette API permet de gérer des bâtiments via diverses routes pour l'inscription
     "message": "Connexion réussie.",
     "token": "1|longaccesstoken..."
 }
-
+```
 
 ## 3. Ajouter plusieurs Bâtiments via un Fichier JSON
 
@@ -88,6 +91,7 @@ fichier json au format comme suit :
         }
     }
 ]
+```
 
 
 ### exemple de réponse (Body) :
@@ -96,7 +100,7 @@ fichier json au format comme suit :
     "message": "Bâtiments ajoutés avec succès.",
     "added_count": 2
 }
-
+```
 
 ## 4. Ajout d'un bâtiment 
 
@@ -112,7 +116,7 @@ fichier json au format comme suit :
     "longitude": 2.3522
 
 }
-
+```
 ### exemple de réponse (body)
 ```json
 {
@@ -127,7 +131,7 @@ fichier json au format comme suit :
         "updated_at": "2024-11-23T12:00:00.000000Z"
     }
 }
-
+```
 ## 5. Supprimer un bâtiment 
 
 - **URL** : `http://localhost:8000/api/batiments/{id}`
@@ -135,12 +139,12 @@ fichier json au format comme suit :
 - **Description** : Supprime un bâtiment via son ID
 
 ### exemple de réponse (body)
-
+```json
 {
     "message": "Bâtiment supprimé avec succès.",
     "batiment_id": "a123e456-7890-1234-b567-8c9def123456"
 }
-
+```
 ## 6.Récupérer tous les bâtiments 
 
 - **URL** : `http://localhost:8000/api/batiments`
@@ -148,7 +152,7 @@ fichier json au format comme suit :
 - **Description** : récupère la liste de tous les batiments au format JSON. 
 
 ### exemple de réponse (body)
-
+```json
 {
     "message": "Liste des bâtiments récupérée avec succès.",
     "batiments": [
@@ -172,7 +176,7 @@ fichier json au format comme suit :
         }
     ]
 }
-
+```
 ## 7. Récupérer un bâtiment par son ID
 
 - **URL** : `http://localhost:8000/api/batiments{id}`
@@ -180,7 +184,7 @@ fichier json au format comme suit :
 - **Description** : Récupère un bâtiment au format JSON via son ID.
 
 ###exemple de réponse (body):
-
+```json
 {
     "message": "Bâtiment récupéré avec succès.",
     "batiment": {
@@ -193,5 +197,5 @@ fichier json au format comme suit :
         "updated_at": "2024-11-23T12:00:00.000000Z"
     }
 }
-
+```
 # API_datathon
