@@ -198,4 +198,87 @@ fichier json au format comme suit :
     }
 }
 ```
+## 8. Rendre un batiment visité
+
+- **URL** : `http://localhost:8000/api/visited`
+- **Méthode** : `POST`
+- **Description** : Marque un batiment comme visité via une requete http contenant un json avec l'ID de l'utilisateur et du batiment.
+
+###exemple de la requête (body)
+```json
+{
+    "batiment_id": "PA00132689",
+    "user_id": "4"
+}
+```
+###exemple de la réponse (body)
+```json
+{
+    "message":"Batiment visited successfully",
+    "visited_batiment":{
+        "batiment_id":"PA00132689",
+        "user_id":"5",
+        "visited_at":"2024-11-26T13:46:01.171628Z",
+        "updated_at":"2024-11-26T13:46:01.000000Z",
+        "created_at":"2024-11-26T13:46:01.000000Z",
+        "id":2
+    }
+}
+```
+
+## 9. récupérer tous les batiments visités d'un utilisateur
+
+- **URL** : `http://localhost:8000/api/visited`
+- **Méthode** : `GET`
+- **Description** : Récupère tous la liste de tous les batiments visités par l'utilisateur via son ID.
+
+###exemple de la requête (body):
+
+```json
+{
+    "user_id": "5"
+}
+
+```
+###exemple de la réponse (body):
+
+```json
+{
+    "batiment_id":"PA00132689",
+    "data":
+    {
+        "name":"église paroissiale",
+        "description":"Le clocher a été fortifié au 17e siècle. La nef et le choeur ont été reconstruits au 18e siècle.",
+        "localisation":
+        {
+            "latitude":49.572618479668,
+            "longitude":-1.3109442483174
+        },
+        "visited_at":"2024-11-26 13:46:01"
+    }
+}
+```
+## 10. compter le nombre de visite sur un bâtiment.
+
+- **URL** : `http://localhost:8000/api/visited/count`
+- **Méthode** : `GET`
+- **Description** : compte le nombre de visite d'un POI via son ID.
+
+###exemple de la requête (body)
+```json
+
+{
+    "batiment_id": "PA00132689"
+}
+
+````
+
+###exemple de la réponse (body)
+
+{
+    "batiment_id":"PA00132689",
+    "count_visit":2
+}
+
+
 # API_datathon
