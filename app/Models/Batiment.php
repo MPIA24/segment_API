@@ -30,6 +30,11 @@ class Batiment extends Model
         return $this->belongsToMany(Tour::class, 'pitstops', 'batiment_id', 'tour_id');
     }
 
+    public function pitstops() : HasMany
+    {
+        return $this->hasMany(TripPitstop::class);
+    }
+
 
 
     public $incrementing = false;

@@ -22,4 +22,9 @@ class Tour extends Model
         'adviced_locomotion'
     ];
 
+    public function pitstops(): HasMany
+    {
+        return $this->hasMany(TripPitstop::class);
+    }
+
 }

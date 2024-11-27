@@ -1,6 +1,6 @@
-# API : Gestion des Bâtiments
+# API : Gestion des Bâtiments, itinéraires et utilisateurs
 
-Cette API permet de gérer des bâtiments via diverses routes pour l'inscription, la connexion, l'ajout, la suppression et la récupération de bâtiments.
+Cette API permet de gérer des bâtiments, utilisateurs et itinéraires via diverses routes pour y effectuer des actions liées à la base de données.
 
 ---
 
@@ -417,14 +417,14 @@ fichier json au format comme suit :
         {
             "id":3,
             "author":"Miss Queenie Gislason",
-            "name":"test d'itin\u00e9raire num\u00e9ro 3",
+            "name":"test d'itinéraire numéro 3",
             "distance":"23.5km",
-            "adviced_locomotion":"parcours \u00e0 pieds",
+            "adviced_locomotion":"parcours à pieds",
             "created_at":"2024-11-27T16:06:48.000000Z",
             "batiments":[
                 {
                     "id":"PA00132689",
-                    "name":"\u00e9glise paroissiale",
+                    "name":"église paroissiale",
                     "longitude":-1.3109442483174,
                     "latitude":49.572618479668
                 },
@@ -451,4 +451,48 @@ fichier json au format comme suit :
 }
 
 ```
+
+## 14. démarer un itinéraire 
+
+- **URL** : `http://localhost:8000/api/trips/start`
+- **Méthode** : `POST`
+- **Description** : démare un nouvel itinéraire reliant les point d'interet et associé a un utilisateur
+
+### exemple de requête : 
+```json
+
+{
+    "tour_id" : 1,
+    "user_id" : 1
+}
+
+```
+
+## 15. valider la visite d'un checkpoint de l'itinéraire (définis sur les POI qui le constituent)
+
+- **URL** : `http://localhost:8000/api/trips/pitstop/validate`
+- **Méthode** : `POST`
+- **Description** : démare un nouvel itinéraire reliant les point d'interet et associé a un utilisateur
+
+### exemple de requête : 
+```json
+{
+    "trip_id" : 1,
+    "batiment_id" : 1
+}
+```
+
+## 16. finaliser un itinéraire 
+
+- **URL** : `http://localhost:8000/api/trips/complete`
+- **Méthode** : `POST`
+- **Description** : finalise un itinéraire en cours, ne peut se faire que si tous les pitstop (donc les  POI ) on étés visités 
+
+### exemple de requête : 
+```json
+{
+    "trip_id" : 1,
+}
+```
+
 # API_datathon
