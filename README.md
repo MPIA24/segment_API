@@ -183,7 +183,7 @@ fichier json au format comme suit :
 - **Méthode** : `GET`
 - **Description** : Récupère un bâtiment au format JSON via son ID.
 
-###exemple de réponse (body):
+### exemple de réponse (body):
 ```json
 {
     "message": "Bâtiment récupéré avec succès.",
@@ -204,14 +204,14 @@ fichier json au format comme suit :
 - **Méthode** : `POST`
 - **Description** : Marque un batiment comme visité via une requete http contenant un json avec l'ID de l'utilisateur et du batiment.
 
-###exemple de la requête (body)
+### exemple de la requête (body)
 ```json
 {
     "batiment_id": "PA00132689",
     "user_id": "4"
 }
 ```
-###exemple de la réponse (body)
+### exemple de la réponse (body)
 ```json
 {
     "message":"Batiment visited successfully",
@@ -232,7 +232,7 @@ fichier json au format comme suit :
 - **Méthode** : `GET`
 - **Description** : Récupère tous la liste de tous les batiments visités par l'utilisateur via son ID.
 
-###exemple de la requête (body):
+### exemple de la requête (body):
 
 ```json
 {
@@ -240,7 +240,7 @@ fichier json au format comme suit :
 }
 
 ```
-###exemple de la réponse (body):
+### exemple de la réponse (body):
 
 ```json
 {
@@ -264,21 +264,191 @@ fichier json au format comme suit :
 - **Méthode** : `GET`
 - **Description** : compte le nombre de visite d'un POI via son ID.
 
-###exemple de la requête (body)
+### exemple de la requête (body)
 ```json
 
 {
     "batiment_id": "PA00132689"
 }
 
-````
+```
 
-###exemple de la réponse (body)
-
+### exemple de la réponse (body)
+```json
 {
     "batiment_id":"PA00132689",
     "count_visit":2
 }
+```
+
+## 11. ajouter un itiniraire 
+
+- **URL** : `http://localhost:8000/api/tours`
+- **Méthode** : `POST`
+- **Description** : créer un itinéraire en base de données en envoyant la liste des POI traversés
+
+### exemple de la requête (body)
+
+```json
+
+{
+    "batiments_id" : [
+        "PA00132689", "PA00132894","PA00125294"
+    ],
+    "name" : "test d'itinéraire",
+    "user_id": 4,
+    "distance":"23.5km",
+    "adviced_locomotion" : "parcours à vélo"
+}
+
+```
+### exemple de réponse (body) : 
+
+```json
+{
+    "tour":
+    {
+        "id":6,
+        "name":"test d'itinéraire",
+        "distance":"23.5km",
+        "adviced_locomotion":"parcours à vélo",
+        "batiments":
+            [
+                {
+                    "id":"PA00125294",
+                    "name":"demeure"
+                },
+                {
+                    "id":"PA00132689",
+                    "name":"église paroissiale"
+                },
+                {
+                    "id":"PA00132894",
+                    "name":"batterie d'artillerie"
+                }
+            ]
+    }
+}
+
+```
+## 12. récupérer tous les itinéraires
+
+- **URL** : `http://localhost:8000/api/tours`
+- **Méthode** : `GET`
+- **Description** : récupère tous les itinéraires avec a chaque fois l'id, le nom, l'auteur, la distance, le moyen de locomotion conseillé ainsi que pour chaque POI passé, l'id et le nom
 
 
+### exemple de réponse : 
+
+```json
+{
+    "tours":[
+        {
+            "id":1,
+            "author":"Miss Danyka Hilpert I",
+            "name":"test d'itinéraire",
+            "distance":"23.5km",
+            "adviced_locomotion":"parcours à vélo",
+            "batiments":[
+                {
+                    "id":"PA00132689",
+                    "name":"église paroissiale"
+                },
+                {
+                    "id":"PA00132894",
+                    "name":"batterie d'artillerie"
+                },
+                {
+                    "id":"PA00125294",
+                    "name":"demeure"
+                }
+            ]
+        },
+        {
+            "id":2,
+            "author":"Miss Queenie Gislason",
+            "name":"test d'itinéraire numéro 2",
+            "distance":"23.5km",
+            "adviced_locomotion":"parcours à pieds",
+            "batiments":[
+                {
+                    "id":"PA00132689",
+                    "name":"église paroissiale"
+                },
+                {
+                    "id":"PA00132894",
+                    "name":"batterie d'artillerie"
+                },
+                {
+                    "id":"PA00125294",
+                    "name":"demeure"
+                },
+                {
+                    "id":"PA27000011",
+                    "name":"couvent"
+                }
+            ]
+        }
+    ]
+}
+
+```
+## 13. récupérer le détail du tracé d'un itinéraire
+
+- **URL** : `http://localhost:8000/api/tours/details`
+- **Méthode** : `GET`
+- **Description** : récupère via un ID d'itinéraire le detail de ce dernier au format JSON incluant son id, son auteur, son nom, sa distance, son moyen de locomotion conseillé et sa date de création ainsi que pour chaque batiment traversé, le nom de ce dernier, son id, sa latitude et sa longitude
+
+### exemple de requête (body) : 
+
+```json
+{
+    "tour_id" : 3
+}
+
+```
+
+### exemple de réponse (body) : 
+
+```json
+
+{
+    "tour":
+        {
+            "id":3,
+            "author":"Miss Queenie Gislason",
+            "name":"test d'itin\u00e9raire num\u00e9ro 3",
+            "distance":"23.5km",
+            "adviced_locomotion":"parcours \u00e0 pieds",
+            "created_at":"2024-11-27T16:06:48.000000Z",
+            "batiments":[
+                {
+                    "id":"PA00132689",
+                    "name":"\u00e9glise paroissiale",
+                    "longitude":-1.3109442483174,
+                    "latitude":49.572618479668
+                },
+                {
+                    "id":"PA00132894",
+                    "name":"batterie d'artillerie",
+                    "longitude":-0.25237801617416,
+                    "latitude":49.287464947376
+                },
+                {
+                    "id":"PA00125294",
+                    "name":"demeure",
+                    "longitude":-0.38660742115417,
+                    "latitude":49.290622316452
+                },
+                {
+                    "id":"PA27000011",
+                    "name":"couvent",
+                    "longitude":1.473656586863,
+                    "latitude":49.399335560273
+                }
+            ]
+        },
+}
+
+```
 # API_datathon

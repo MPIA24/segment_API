@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BatimentController;
+use App\Http\Controllers\TourController;
 use App\Http\Controllers\VisitedController;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -20,6 +21,9 @@ Route::get('/batiments/{id}', [BatimentController::class, 'show']);
 Route::post('/visited',[VisitedController::class,'store']);
 Route::get('/visited',[VisitedController::class,'ReadAllFromUser']);
 Route::get('/visited/count',[VisitedController::class,'countVisit']);
+Route::post('/tours', [TourController::class, 'store']);
+Route::get('/tours', [TourController::class, 'index']);
+Route::get('/tours/details', [TourController::class, 'show']);
 
 
 

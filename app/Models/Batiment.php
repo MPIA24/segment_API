@@ -25,6 +25,12 @@ class Batiment extends Model
         return $this->hasMany(VisitedBatiments::class);
     }
 
+    public function tours()
+    {
+        return $this->belongsToMany(Tour::class, 'pitstops', 'batiment_id', 'tour_id');
+    }
+
+
 
     public $incrementing = false;
     protected $keyType = 'string';
