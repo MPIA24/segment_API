@@ -19,4 +19,5 @@ class Registered
     {
         $this->user = $user;
     }
+    
 }

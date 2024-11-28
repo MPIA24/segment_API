@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\PitstopValidated;
+use App\Models\TripPitstop;
+use App\Observers\TripPitstopObserver;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+        TripPitstop::observe(TripPitstopObserver::class);
     }
 }
