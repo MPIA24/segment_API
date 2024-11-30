@@ -281,7 +281,53 @@ fichier json au format comme suit :
 }
 ```
 
-## 11. ajouter un itiniraire 
+## 11. compte le nombre de visite de chaque batiments visités
+
+- **URL** : `http://localhost:8000/api/visited/count/visited`
+- **Méthode** : `GET`
+- **Description** : compte le nombre de visite de chaque batiments visités.
+
+###  exemple de la reponse (body) : 
+
+```json
+
+{
+    {
+        "batiment_id":"PA00132689",
+        "count_visit":2
+    },
+    {
+        "batiment_id":"PA00132654",
+        "count_visit":7
+    },
+}
+
+```
+## 12. compte le nombre de visite de chaque batiments
+
+- **URL** : `http://localhost:8000/api/visited/count/all`
+- **Méthode** : `GET`
+- **Description** : compte le nombre de visite de chaque batiments visités et non visités.
+
+###  exemple de la reponse (body) : 
+
+```json
+
+{
+    {
+        "batiment_id":"PA00132689",
+        "count_visit":2
+    },
+    {
+        "batiment_id":"PA00132654",
+        "count_visit":0
+    },
+}
+
+```
+
+
+## 13. ajouter un itiniraire 
 
 - **URL** : `http://localhost:8000/api/tours`
 - **Méthode** : `POST`
@@ -331,7 +377,7 @@ fichier json au format comme suit :
 }
 
 ```
-## 12. récupérer tous les itinéraires
+## 14. récupérer tous les itinéraires
 
 - **URL** : `http://localhost:8000/api/tours`
 - **Méthode** : `GET`
@@ -393,7 +439,7 @@ fichier json au format comme suit :
 }
 
 ```
-## 13. récupérer le détail du tracé d'un itinéraire
+## 15. récupérer le détail du tracé d'un itinéraire
 
 - **URL** : `http://localhost:8000/api/tours/details`
 - **Méthode** : `GET`
@@ -452,7 +498,7 @@ fichier json au format comme suit :
 
 ```
 
-## 14. démarer un itinéraire 
+## 16. démarer un itinéraire 
 
 - **URL** : `http://localhost:8000/api/trips/start`
 - **Méthode** : `POST`
@@ -468,7 +514,7 @@ fichier json au format comme suit :
 
 ```
 
-## 15. valider la visite d'un checkpoint de l'itinéraire (définis sur les POI qui le constituent)
+## 17. valider la visite d'un checkpoint de l'itinéraire (définis sur les POI qui le constituent)
 
 - **URL** : `http://localhost:8000/api/trips/pitstop/validate`
 - **Méthode** : `POST`
@@ -482,7 +528,7 @@ fichier json au format comme suit :
 }
 ```
 
-## 16. finaliser un itinéraire 
+## 18. finaliser un itinéraire 
 
 - **URL** : `http://localhost:8000/api/trips/complete`
 - **Méthode** : `POST`

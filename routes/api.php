@@ -26,6 +26,8 @@ Route::get('/batiments/{id}', [BatimentController::class, 'show']);
 Route::post('/visited',[VisitedController::class,'store']);
 Route::get('/visited',[VisitedController::class,'ReadAllFromUser']);
 Route::get('/visited/count',[VisitedController::class,'countVisit']);
+Route::get('/visited/count/visited', [VisitedController::class,'countVisitsForAll']);
+Route::get('/visited/count/all', [VisitedController::class,'countVisitsOfVisitedPOI']);
 
 
 //tour routes

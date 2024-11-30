@@ -6,6 +6,7 @@ use App\Models\Batiment;
 use App\Models\VisitedBatiments;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VisitedController extends Controller
 {
@@ -71,5 +72,40 @@ class VisitedController extends Controller
             'batiment_id' => $request->batiment_id,
             'count_visit' => $numberOfVisit,
         ], 200) ;
+    }
+
+    public function countVisitsForAll(): JsonResponse
+    {
+        $visits = VisitedBatiments::select('batiment_id', DB::raw('COUNT(*) as count_visit'))
+            ->groupBy('batiment_id')
+            ->get();
+
+
+        $response = $visits->map(function ($visit) {
+            return [
+                'batiment_id' => $visit->batiment_id,
+                'count_visit' => $visit->count_visit,
+            ];
+        });
+
+        return response()->json($response, 200);
+    }
+
+public function countVisitsOfVisitedPOI(): JsonResponse
+    {
+        $visits = Batiment::leftJoin('batiments_users', 'batiments.id', '=', 'batiments_users.batiment_id')
+        ->select('batiments.id as batiment_id', DB::raw('COUNT(batiments_users.id) as count_visit'))
+        ->groupBy('batiments.id')
+        ->get();
+
+    // Construire la réponse
+    $response = $visits->map(function ($visit) {
+        return [
+            'batiment_id' => $visit->batiment_id,
+            'count_visit' => $visit->count_visit,
+        ];
+    });
+
+    return response()->json($response, 200);
     }
 }
