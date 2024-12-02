@@ -228,8 +228,8 @@ fichier json au format comme suit :
 
 ## 9. récupérer tous les batiments visités d'un utilisateur
 
-- **URL** : `http://localhost:8000/api/visited`
-- **Méthode** : `GET`
+- **URL** : `http://localhost:8000/api/visited/get`
+- **Méthode** : `POST`
 - **Description** : Récupère tous la liste de tous les batiments visités par l'utilisateur via son ID.
 
 ### exemple de la requête (body):
@@ -441,8 +441,8 @@ fichier json au format comme suit :
 ```
 ## 15. récupérer le détail du tracé d'un itinéraire
 
-- **URL** : `http://localhost:8000/api/tours/details`
-- **Méthode** : `GET`
+- **URL** : `http://localhost:8000/api/tours/details/get`
+- **Méthode** : `POST`
 - **Description** : récupère via un ID d'itinéraire le detail de ce dernier au format JSON incluant son id, son auteur, son nom, sa distance, son moyen de locomotion conseillé et sa date de création ainsi que pour chaque batiment traversé, le nom de ce dernier, son id, sa latitude et sa longitude
 
 ### exemple de requête (body) : 

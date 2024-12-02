@@ -24,7 +24,7 @@ Route::get('/batiments/{id}', [BatimentController::class, 'show']);
 
 //visited routes
 Route::post('/visited',[VisitedController::class,'store']);
-Route::get('/visited',[VisitedController::class,'ReadAllFromUser']);
+Route::post('/visited/get',[VisitedController::class,'ReadAllFromUser']);
 Route::get('/visited/count',[VisitedController::class,'countVisit']);
 Route::get('/visited/count/visited', [VisitedController::class,'countVisitsForAll']);
 Route::get('/visited/count/all', [VisitedController::class,'countVisitsOfVisitedPOI']);
@@ -33,12 +33,9 @@ Route::get('/visited/count/all', [VisitedController::class,'countVisitsOfVisited
 //tour routes
 Route::post('/tours', [TourController::class, 'store']);
 Route::get('/tours', [TourController::class, 'index']);
-Route::get('/tours/details', [TourController::class, 'show']);
+Route::post('/tours/details/get', [TourController::class, 'show']);
 
 //trip routes
 Route::post('/trips/start', [TripController::class,'startTrip']);
 Route::post('/trips/pitstop/validate', [TripController::class,'validatePitstop']);
 Route::post('/trips/complete', [TripController::class,'completeTrip']);
-
-
-
