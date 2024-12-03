@@ -67,11 +67,30 @@ class TourController extends Controller
                         return [
                             'id' => $batiment->id,
                             'name' => $batiment->name,
+                            'longitude'=>$batiment->longitude,
+                            'latitude'=>$batiment->latitude,
                         ];
                     })->values(),
                 ];
             })->values(),
         ], 200);
+    }
+
+    public function destroy(Request $request): JsonResponse
+    {
+        $request->validate([
+            'tour_id' => 'required|exists:tours,id',
+        ]);
+
+        $tour = Tour::find($request->tour_id);
+        if (!$tour) {
+            return response()->json(['message' => 'Tour not found.'], 404);
+        }
+
+        $tour->batiments()->detach(); // detach all batiments associated with the tour
+        $tour->delete();
+
+        return response()->json(['message' => 'Tour deleted successfully.'], 200);
     }
 
     public function show (Request $request):JsonResponse

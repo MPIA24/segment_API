@@ -497,8 +497,23 @@ fichier json au format comme suit :
 }
 
 ```
+## 16. supprimer un itinéraire 
 
-## 16. démarer un itinéraire 
+- **URL** : `http://localhost:8000/api/tours`
+- **Méthode** : `DELETE`
+- **Description** : supprime un itinéraire
+
+
+### exemple de requete (body)
+```json
+
+{
+    "tour_id" : 4
+}
+
+```
+
+## 17. démarer un itinéraire 
 
 - **URL** : `http://localhost:8000/api/trips/start`
 - **Méthode** : `POST`
@@ -514,7 +529,7 @@ fichier json au format comme suit :
 
 ```
 
-## 17. valider la visite d'un checkpoint de l'itinéraire (définis sur les POI qui le constituent)
+## 19. valider la visite d'un checkpoint de l'itinéraire (définis sur les POI qui le constituent)
 
 - **URL** : `http://localhost:8000/api/trips/pitstop/validate`
 - **Méthode** : `POST`
@@ -528,7 +543,7 @@ fichier json au format comme suit :
 }
 ```
 
-## 18. finaliser un itinéraire 
+## 19. finaliser un itinéraire 
 
 - **URL** : `http://localhost:8000/api/trips/complete`
 - **Méthode** : `POST`

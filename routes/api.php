@@ -34,6 +34,7 @@ Route::get('/visited/count/all', [VisitedController::class,'countVisitsOfVisited
 Route::post('/tours', [TourController::class, 'store']);
 Route::get('/tours', [TourController::class, 'index']);
 Route::post('/tours/details/get', [TourController::class, 'show']);
+Route::delete('/tours', [TourController::class, 'destroy']);
 
 //trip routes
 Route::post('/trips/start', [TripController::class,'startTrip']);
