@@ -1,8 +1,42 @@
-# API : Gestion des Bâtiments, itinéraires et utilisateurs
+# API : Description
 
-Cette API permet de gérer des bâtiments, utilisateurs et itinéraires via diverses routes pour y effectuer des actions liées à la base de données.
+Cette API permet de connecter notre base de données avec nos deux applications front end (gameApp et dashboard). elle fait partie intégrante de l'écosystème de Sigment, une appli de recolte, utilisation et partage de données open data en rapport avec les point d'interet touristiques au sein de la Normandie.
 
 ---
+# API : prérequis et procédure de lancement de l'API dans un environnement local (developpement)
+
+## 1. prérequis : 
+- **PHP 8.1** : installé et ajouté a vos varibles d'environnement
+- **Composer** : installé et ajouté à vos variables d'environnement
+- **SQLite3** : installé (normalement compris dans PHP 8.1, penser a décommenté dans le php.ini si besoin)
+- **Git** : installé, ajouté au path et de préférence avec une clé SSH associé à votre github pour gitclone facilement
+
+## 2. procédure d'import du projet sur votre machine : 
+
+- **Gitclone** : ouvrez votre terminal (zsh ou powershell selon votre environnement de travail) et déplacer vous dans le dossier ou vous souhaitez installer l'API : 
+
+```bash
+
+gh repo clone MPIA24/segment_API
+
+```
+
+- **Composer** : installer les dépendances avec la commande suivante  (toujours depuis votre terminal): 
+
+```bash
+cd /segment_API/
+composer install
+```
+
+- **Serveur** : lancer le serveur via le terminal avec la commande suivante (toujours depuis votre terminal):
+
+```bash
+
+php artisan serve
+
+```
+
+# API : comment utiliser l'API dans votre application (route, methode, requetes et réponses detaillés)
 
 ## 1. Inscription d’un Utilisateur
 
@@ -58,7 +92,22 @@ Cette API permet de gérer des bâtiments, utilisateurs et itinéraires via dive
 }
 ```
 
-## 3. Ajouter plusieurs Bâtiments via un Fichier JSON
+## 3. Nombre d'utilisateur
+
+- **URL** : `http://localhost:8000/api/users/count`
+- **Méthode** : `GET`
+- **Description** : compte le nombre d'utilisateur inscrit en base de données et renvoie le nombre sous format json
+
+### exemple de réponse (body)
+```json
+
+{
+    "totalUser" : 246
+}
+
+```
+
+## 4. Ajouter plusieurs Bâtiments via un Fichier JSON
 
 - **URL** : `http://localhost:8000/api/batiments/import`
 - **Méthode** : `POST`
@@ -102,7 +151,7 @@ fichier json au format comme suit :
 }
 ```
 
-## 4. Ajout d'un bâtiment 
+## 5. Ajout d'un bâtiment 
 
 - **URL** : `http://localhost:8000/api/batiments`
 - **Méthode** : `POST`
@@ -132,7 +181,7 @@ fichier json au format comme suit :
     }
 }
 ```
-## 5. Supprimer un bâtiment 
+## 6. Supprimer un bâtiment 
 
 - **URL** : `http://localhost:8000/api/batiments/{id}`
 - **Méthode** : `POST`
@@ -145,7 +194,7 @@ fichier json au format comme suit :
     "batiment_id": "a123e456-7890-1234-b567-8c9def123456"
 }
 ```
-## 6.Récupérer tous les bâtiments 
+## 7.Récupérer tous les bâtiments 
 
 - **URL** : `http://localhost:8000/api/batiments`
 - **Méthode** : `GET`
@@ -177,7 +226,7 @@ fichier json au format comme suit :
     ]
 }
 ```
-## 7. Récupérer un bâtiment par son ID
+## 8. Récupérer un bâtiment par son ID
 
 - **URL** : `http://localhost:8000/api/batiments{id}`
 - **Méthode** : `GET`
@@ -198,7 +247,24 @@ fichier json au format comme suit :
     }
 }
 ```
-## 8. Rendre un batiment visité
+
+## 9. Nombre de batiment
+
+- **URL** : `http://localhost:8000/api/count/batiments`
+- **Méthode** : `GET`
+- **Description** : compte le nombre de POIs en base de données et le renvoi sous format json
+
+### exemple de réponse (body)   
+
+```json
+
+{
+    "totalBatiments" : 1093
+}
+
+```
+
+## 10. Rendre un batiment visité
 
 - **URL** : `http://localhost:8000/api/visited`
 - **Méthode** : `POST`
@@ -226,7 +292,7 @@ fichier json au format comme suit :
 }
 ```
 
-## 9. récupérer tous les batiments visités d'un utilisateur
+## 11. récupérer tous les batiments visités d'un utilisateur
 
 - **URL** : `http://localhost:8000/api/visited/get`
 - **Méthode** : `POST`
@@ -258,7 +324,7 @@ fichier json au format comme suit :
     }
 }
 ```
-## 10. compter le nombre de visite sur un bâtiment.
+## 12. compter le nombre de visite sur un bâtiment.
 
 - **URL** : `http://localhost:8000/api/visited/count`
 - **Méthode** : `GET`
@@ -281,7 +347,7 @@ fichier json au format comme suit :
 }
 ```
 
-## 11. compte le nombre de visite de chaque batiments visités
+## 13. compte le nombre de visite de chaque batiments visités
 
 - **URL** : `http://localhost:8000/api/visited/count/visited`
 - **Méthode** : `GET`
@@ -303,7 +369,7 @@ fichier json au format comme suit :
 }
 
 ```
-## 12. compte le nombre de visite de chaque batiments
+## 14. compte le nombre de visite de chaque batiments
 
 - **URL** : `http://localhost:8000/api/visited/count/all`
 - **Méthode** : `GET`
@@ -326,8 +392,24 @@ fichier json au format comme suit :
 
 ```
 
+## 15. Nombre de batiment
 
-## 13. ajouter un itiniraire 
+- **URL** : `http://localhost:8000/api/count/visits`
+- **Méthode** : `GET`
+- **Description** : compte le nombre de POIs en base de données et le renvoi sous format json
+
+### exemple de réponse (body)   
+
+```json
+
+{
+    "totalVisitNumber" : 12367
+}
+
+```
+
+
+## 16. ajouter un itiniraire 
 
 - **URL** : `http://localhost:8000/api/tours`
 - **Méthode** : `POST`
@@ -377,7 +459,7 @@ fichier json au format comme suit :
 }
 
 ```
-## 14. récupérer tous les itinéraires
+## 17. récupérer tous les itinéraires
 
 - **URL** : `http://localhost:8000/api/tours`
 - **Méthode** : `GET`
@@ -439,7 +521,7 @@ fichier json au format comme suit :
 }
 
 ```
-## 15. récupérer le détail du tracé d'un itinéraire
+## 18. récupérer le détail du tracé d'un itinéraire
 
 - **URL** : `http://localhost:8000/api/tours/details/get`
 - **Méthode** : `POST`
@@ -497,7 +579,7 @@ fichier json au format comme suit :
 }
 
 ```
-## 16. supprimer un itinéraire 
+## 19. supprimer un itinéraire 
 
 - **URL** : `http://localhost:8000/api/tours`
 - **Méthode** : `DELETE`
@@ -513,7 +595,7 @@ fichier json au format comme suit :
 
 ```
 
-## 17. démarer un itinéraire 
+## 20. démarer un itinéraire 
 
 - **URL** : `http://localhost:8000/api/trips/start`
 - **Méthode** : `POST`
@@ -529,7 +611,7 @@ fichier json au format comme suit :
 
 ```
 
-## 19. valider la visite d'un checkpoint de l'itinéraire (définis sur les POI qui le constituent)
+## 21. valider la visite d'un checkpoint de l'itinéraire (définis sur les POI qui le constituent)
 
 - **URL** : `http://localhost:8000/api/trips/pitstop/validate`
 - **Méthode** : `POST`
@@ -543,7 +625,7 @@ fichier json au format comme suit :
 }
 ```
 
-## 19. finaliser un itinéraire 
+## 22. finaliser un itinéraire 
 
 - **URL** : `http://localhost:8000/api/trips/complete`
 - **Méthode** : `POST`

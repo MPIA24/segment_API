@@ -21,10 +21,12 @@ Route::post('/batiments', [BatimentController::class, 'store']);
 Route::delete('/batiments/{id}', [BatimentController::class, 'destroy']);
 Route::get('/batiments', [BatimentController::class, 'index']);
 Route::get('/batiments/{id}', [BatimentController::class, 'show']);
+Route::get('/count/batiments', [BatimentController::class,'count']);
 
 //visited routes
 Route::post('/visited',[VisitedController::class,'store']);
 Route::post('/visited/get',[VisitedController::class,'ReadAllFromUser']);
+Route::get('/count/visits',[VisitedController::class,'count']);
 Route::get('/visited/count',[VisitedController::class,'countVisit']);
 Route::get('/visited/count/visited', [VisitedController::class,'countVisitsForAll']);
 Route::get('/visited/count/all', [VisitedController::class,'countVisitsOfVisitedPOI']);

@@ -32,6 +32,12 @@ class VisitedController extends Controller
         ], 201);
     }
 
+    public function count(){
+        return response()->json([
+            'totalVisitNumber' => VisitedBatiments::count(),
+        ], 200);
+    }
+
     public function ReadAllFromUser(Request $request): JsonResponse
     {
         // Valider les données de la requête

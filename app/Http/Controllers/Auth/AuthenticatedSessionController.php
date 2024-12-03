@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -14,6 +15,13 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
 
+
+    public function count(){
+        $totalUser = User::count();
+        return response()->json([
+            'totalUser' => $totalUser,
+        ], 200);
+    }
 
     public function login(LoginRequest $request): JsonResponse
     {

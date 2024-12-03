@@ -132,5 +132,12 @@ class BatimentController extends Controller
             'batiment' => $batiment,
         ], 200);
     }
+
+    public function count(){
+        $totalBatiments = Batiment::count();
+        return response()->json([
+            'totalBatiments' => $totalBatiments,
+        ], 200);
+    }
 }
 
