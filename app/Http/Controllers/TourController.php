@@ -24,7 +24,6 @@ class TourController extends Controller
         $tour = Tour::create([
             'name' => $request->input('name'),
             'user_id' => $request->input('user_id'),
-            'distance' => $request->input('distance'),
             'adviced_locomotion' => $request->input('adviced_locomotion'),
         ]);
 

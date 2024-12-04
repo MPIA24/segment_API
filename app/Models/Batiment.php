@@ -35,6 +35,11 @@ class Batiment extends Model
         return $this->hasMany(TripPitstop::class);
     }
 
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
 
 
     public $incrementing = false;
